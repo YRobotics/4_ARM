@@ -35,3 +35,20 @@ Divo::Divo(int num)
 	}
 	
 }
+void Divo::test()
+{
+	/* blink lights and stuff to show the user that the 
+	library was successfully installed and can thus run this test programmer
+	
+	NOTE: user need not to initalize a divo class inorder to use this function
+	
+	analogWrite(LED_R,);
+	analogWrite(LED_G,);
+	analogWrite(LED_B,);
+	
+	delay(10);
+	
+	
+	
+	
+}
