@@ -19,17 +19,17 @@ Divo::Divo(int num)
 	switch (num)
 	{
 		case 1:
-		   //Servo DivoL1, DivoR1;
+		   num_ = num;
 		   DivoL1.attach(D_L1);
 		   DivoR1.attach(D_R1);
 		break;
 		case 2:
-		   //Servo DivoL2, DivoR2;
+		   num_ = num;
 		   DivoL2.attach(D_L2);
 		   DivoR2.attach(D_R2);
 		break;
 		case 3:
-		   //Servo DivoL1, DivoR1;
+		   num_ = num;
 		   DivoL1.attach(D_L3);
 		   DivoR1.attach(D_R3);
 		break;
@@ -40,6 +40,7 @@ Divo::Divo(int num)
 	}
 	
 }
+
 void flextest()
 {
 	/* blink lights and stuff to show the user that the 

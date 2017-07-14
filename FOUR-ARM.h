@@ -56,7 +56,7 @@ class Divo
 	   
 	   
 	private:
-	    
+	    int num_;
 	
 	
 };
