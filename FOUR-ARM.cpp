@@ -16,22 +16,26 @@ Servo DivoL1 ,DivoR1
 
 Divo::Divo(int num)
 {
+	num_ = num;
 	switch (num)
 	{
 		case 1:
-		   num_ = num;
+
 		   DivoL1.attach(D_L1);
 		   DivoR1.attach(D_R1);
+		   
 		break;
 		case 2:
-		   num_ = num;
+		   
 		   DivoL2.attach(D_L2);
 		   DivoR2.attach(D_R2);
+		   
 		break;
 		case 3:
-		   num_ = num;
+		   
 		   DivoL1.attach(D_L3);
 		   DivoR1.attach(D_R3);
+		   
 		break;
 		default:
 		   //The programmer must have made a mistake 
