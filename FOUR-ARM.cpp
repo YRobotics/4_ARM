@@ -20,7 +20,7 @@ Divo::Divo(int num)
 	switch (num)
 	{
 		case 1:
-
+        
 		   DivoL1.attach(D_L1);
 		   DivoR1.attach(D_R1);
 		   
@@ -39,13 +39,13 @@ Divo::Divo(int num)
 		break;
 		default:
 		   //The programmer must have made a mistake 
-		   flexerror();
+		   flexError();
 		break;
 	}
 	
 }
 
-void flextest()
+void flexTest()
 {
 	/* blink lights and stuff to show the user that the 
 	library was successfully installed and can thus run this test programmer
@@ -53,9 +53,9 @@ void flextest()
 	NOTE: user need not to initalize a divo class inorder to use this function
 	*/
 	for(int p=0; p<3; p++){
-   pulse(11,2);
-   pulse(10,2);
-   pulse(9,2);
+   pulse(11,1);
+   pulse(10,1);
+   pulse(9,1);
    delay(0);
   }
 delay(0);
@@ -85,7 +85,7 @@ void pulse(int pin,int pause){
   return;
  }
 	
-void flexerror()
+void flexError()
 {
 	digitalWrite(LED_R,1);
 	digitalWrite(LED_G,0);
@@ -95,3 +95,12 @@ void flexerror()
 	
 	return;
 }
+
+bool buttonState()
+{
+	// Return a value that makes reasonable sense 1 == on, 0 == off
+	return (bool(-1*digitalRead(SW_STATE)+1));
+}
+	
+	
+	

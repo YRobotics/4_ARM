@@ -26,6 +26,10 @@
 #define H_2_A 2
 #define H_2_B 3
 
+// pin assignment for button mounted onto Nerve Center
+// NOTE: The button attached is logically inverted
+#define SW_STATE 53
+
 
 
 
@@ -43,20 +47,23 @@ extern Servo DivoL1 ,DivoR1 ,DivoL2 ,DivoR2 ,DivoL3 ,DivoR3;
              
 			 
 
-void flextest();
-void flexerror();
+void flexTest();
+void flexError();
 void pulse(int pin,int pause);
+bool buttonState();
 
 class Divo
 {
 	public:
 	   Divo(int num);
+	   void Update(float A, float B);
 	   
 	   
 	   
 	   
 	private:
 	    int num_;
+		
 	
 	
 };
