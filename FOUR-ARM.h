@@ -7,13 +7,14 @@
 #define Divo_h
 
 // pin assignments for 1,2,3 Divos and Auxillary signal
-#define D_L1 2
-#define D_R1 3
-#define D_L2 4
+
+#define AUX_1 2
+#define D_R3 3
+#define D_L3 4
 #define D_R2 5
-#define D_L3 6
-#define D_R3 7
-#define AUX_1 8
+#define D_L2 6
+#define D_R1 7
+#define D_L1 8
 
 // pin assignments for RGB LED
 #define LED_R 9
@@ -43,7 +44,7 @@
 // Test function flashes LEDS to indicate that 
 //library was installed correctly
 
-extern Servo DivoL1 ,DivoR1 ,DivoL2 ,DivoR2 ,DivoL3 ,DivoR3;
+
              
 			 
 
@@ -51,18 +52,25 @@ void flexTest();
 void flexError();
 void pulse(int pin,int pause);
 bool buttonState();
+void gripper(boolean state);
 
 class Divo
 {
 	public:
 	   Divo(int num);
-	   void Update(float A, float B);
 	   
+	   void update(float A, float B);
+	   
+	   float Left, Right;
 	   
 	   
 	   
 	private:
 	    int num_;
+		
+		Servo DivoL1 ,DivoR1 
+		     ,DivoL2 ,DivoR2 
+			 ,DivoL3 ,DivoR3;
 		
 	
 	

@@ -10,9 +10,12 @@ Write stuff here
 #include "FOUR-ARM.h"
 #include "Servo.h"
 
+
+
 Servo DivoL1 ,DivoR1
      ,DivoL2 ,DivoR2
-     ,DivoL3 ,DivoR3;
+     ,DivoL3 ,DivoR3
+	 ,aux;
 
 Divo::Divo(int num)
 {
@@ -21,20 +24,20 @@ Divo::Divo(int num)
 	{
 		case 1:
         
-		   DivoL1.attach(D_L1);
-		   DivoR1.attach(D_R1);
+		   
+		   Serial.println("DIVO1 Successfully attached");
 		   
 		break;
 		case 2:
 		   
-		   DivoL2.attach(D_L2);
-		   DivoR2.attach(D_R2);
+		   
+		   Serial.println("DIVO2 Successfully attached");
 		   
 		break;
 		case 3:
 		   
-		   DivoL1.attach(D_L3);
-		   DivoR1.attach(D_R3);
+		   
+		   Serial.println("DIVO3 Successfully attached");
 		   
 		break;
 		default:
@@ -45,6 +48,77 @@ Divo::Divo(int num)
 	
 }
 
+// this class function is responsible for determinig
+// what each servo needs to be 
+// commanded to for any of the 3 corresponding joints
+
+void Divo::update(float A, float B)
+{
+	Left = (A+B)/2+90.0;
+    Right = (-A+B)/2+90.0;
+	Serial.println("Divo is being commanded!");
+	switch (num_)
+	{
+		case 1:
+		
+		   DivoL1.attach(D_L1);
+		   DivoL1.write(Left);
+		   
+		   DivoR1.attach(D_R1);
+		   DivoR1.write(Right);
+		   
+		   
+		   Serial.println("Servo R");
+		   Serial.println(DivoR1.attached());
+		   Serial.println(DivoR1.read());
+		   Serial.println("Servo L");
+		   Serial.println(DivoL1.attached());
+		   Serial.println(DivoL1.read());
+		   
+		   Serial.println("DIVO1 Successfully commanded");
+		   
+		   break;
+		case 2:
+		
+		   DivoL2.attach(D_L2);
+		   DivoL2.write(Left);
+		   
+		   DivoR2.attach(D_R2);
+		   DivoR2.write(Right);
+		   
+		   Serial.println("DIVO2 Successfully commanded");
+		   break;
+		case 3:
+		   DivoL3.attach(D_L3);
+		   DivoL3.write(Left);
+		   
+		   DivoR3.attach(D_R3);
+		   DivoR3.write(Right);
+		   
+		   Serial.println("DIVO3 Successfully commanded");
+		   break;
+		default:
+		   // potential typo or error in class name or class initalization argument
+		   flexError();
+		   break;
+    }
+	return;
+}
+		
+void gripper(boolean state){
+	aux.attach(AUX_1);
+	
+	if(state == true){
+	    aux.write(180);
+	} 
+	else {
+		aux.write(0);
+	}
+    return;
+}
+	
+
+
 void flexTest()
 {
 	/* blink lights and stuff to show the user that the 
@@ -53,20 +127,20 @@ void flexTest()
 	NOTE: user need not to initalize a divo class inorder to use this function
 	*/
 	for(int p=0; p<3; p++){
-   pulse(11,1);
-   pulse(10,1);
-   pulse(9,1);
+   pulse(LED_R,1);
+   pulse(LED_G,1);
+   pulse(LED_B,1);
    delay(0);
   }
 delay(0);
-digitalWrite(9,1);
-digitalWrite(10,1);
-digitalWrite(11,1);
-delay(1000);
-digitalWrite(9,0);
-digitalWrite(10,0);
-digitalWrite(11,0);
-delay(1000);
+digitalWrite(LED_R,1);
+digitalWrite(LED_G,1);
+digitalWrite(LED_B,1);
+delay(500);
+digitalWrite(LED_R,0);
+digitalWrite(LED_G,0);
+digitalWrite(LED_B,0);
+
 return;
 }
 
