@@ -59,6 +59,8 @@ class Divo
 	public:
 	   Divo(int num);
 	   
+	   void haptic(char port);
+	   
 	   void update(float A, float B);
 	   
 	   float Left, Right;

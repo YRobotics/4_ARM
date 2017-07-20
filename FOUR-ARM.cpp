@@ -47,15 +47,47 @@ Divo::Divo(int num)
 	}
 	
 }
+void Divo::haptic(char port)
+{
+	if(port == 'A' || port == 'a')
+	{
+		
+	update(map(analogRead(0),0,1023,-100,100),
+                map(analogRead(1),0,1023,-100,100));	
+	Serial.println("Haptic port A active");	
+	return;
+	
+	}
+	if(port == 'B' || port == 'b')
+	{
+		
+	update(map(analogRead(2),0,1023,-100,100),
+                map(analogRead(3),0,1023,-100,100));	
+	Serial.println("Haptic port B active");	
+	return;
+	
+	}
+	else {
+		
+		flexError();
+		// there are only two haptic ports A and B, any other char 
+		// in the argument for htis method ought to be an error
+	}
+	
+	return;
+	
+}
 
-// this class function is responsible for determinig
+
+
+// this method is responsible for determinig
 // what each servo needs to be 
 // commanded to for any of the 3 corresponding joints
 
 void Divo::update(float A, float B)
 {
-	Left = (A+B)/2+90.0;
-    Right = (-A+B)/2+90.0;
+	Left = (.8*(A+B)/2+90.0);
+    Right = (.8*(-A+B)/2+90.0);
 	Serial.println("Divo is being commanded!");
 	switch (num_)
 	{
@@ -69,10 +101,8 @@ void Divo::update(float A, float B)
 		   
 		   
 		   Serial.println("Servo R");
-		   Serial.println(DivoR1.attached());
 		   Serial.println(DivoR1.read());
 		   Serial.println("Servo L");
-		   Serial.println(DivoL1.attached());
 		   Serial.println(DivoL1.read());
 		   
 		   Serial.println("DIVO1 Successfully commanded");
